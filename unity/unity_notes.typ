@@ -5,7 +5,7 @@
   margin: (x:3.7cm)
 )
 #set text(
-  font:"Times New Roman"
+  font:"URW Bookman",
 )
 #set par(
   justify: true,
@@ -14,8 +14,10 @@
   header: [
   #h(1fr)
   _Unity notes_
-],footer: [#h(1fr)#counter(page).display()]
+],numbering: "1"
 )
+
+#show link: set text(fill:blue)
 
 
 #maketitle(
@@ -119,6 +121,41 @@ public sealed class Singleton
     }
 }
 ```
+
+= Shaders
+== Vertex shaders
+#par[
+  A vertex shader is usually the first step in the graphics pipeline, this is where vertex information is processed and passed onto the rest of the pipeline. A basic vertex shader simply reads the vertex data as is and simply passes that data to the rest of the pipeline (in the correct format). One could, for example, edit the vertex shader to distort the vertex possitions, achieving a visual vertex distortion effect.
+]
+== Fragment shaders
+#par[
+  Fragment shaders determines the colors of the shapes to be drawn. In a graphics pipeline, it is usually placed after shapes have been determined, and before rasterization. A simple fragment shader would be one that takes texture data and projects that onto a shape, creating a textured shape that can be drawn. A more complex fragment shader could for example also modulate the texture data to create visual effects.
+]
+
+== Surface shaders
+#par[
+  These are shaders that interact with lighting. 
+]
+ 
+== Shader lab
+#par[
+  Shader lab is used to define the structure and content of shader objects with nested-braces, declarative syntax. In shader lab, HLSL code can be written inside code blocks, the whole shader object is compiled into the configured framework (e.g OpenGL). Shader lab offers special commands that set the GPU state before executing a shader program. 
+]
+
+== HLSL
+#emph[High Level Shading Language] is the language used when writing shader code for Unity. The reason for it being high level is so that it is compileable to different graphics frameworks (such as OpenGL or DirectX).
+
+== GLSL
+#par[
+  GLSL (OpenGL Shading Language) is the shading language used for writing OpenGL shaders. Unity probly compiles to GLSL somewhere in the compilation phase when OpenGL is configured as the graphics framework. One can write shaders with GLSL code and have it run in Unity by following #link("https://docs.unity3d.com/6000.1/Documentation/Manual/SL-GLSLShaderPrograms.html")[this guide.]
+]
+
+== Tying it all together
+In Unity, shapes are rendered in a pipelined manner where the vertex shader determines processing of vertex information, fragment shaders can make use of materials and textures to process color information, surface shaders can interact with lighting. Materials are used by vertex shaders to process color (texture) information and some other special rendering configurations such as surface type (opaque/transparent) and mappings of different types (normal,metallic, height, occulsion). 
+
+== Guide: Writing a shader
+
+
 
 
 
